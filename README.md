@@ -17,6 +17,6 @@ docker-compose up
 
 #### Next steps for the project:
 
-- [] Implement encrypt and decrypt functions for sensitive data (e.g., email, password, and cellphone).
-- [] Add unit and end-to-end (E2E) tests for user-related functionalities.
-- [] Implement the `/auth/` route to generate JWT tokens.
+- [ ] Implement encrypt and decrypt functions for sensitive data (e.g., email, password, and cellphone).
+- [ ] Add unit and end-to-end (E2E) tests for user-related functionalities.
+- [ ] Implement the `/auth/` route to generate JWT tokens.
