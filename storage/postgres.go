@@ -2,7 +2,9 @@ package storage
 
 import (
 	"context"
+	"errors"
 	"log"
+	"os"
 
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -10,7 +12,12 @@ import (
 var Conn *pgxpool.Pool
 
 func NewPostgresConnection(ctx context.Context) (*pgxpool.Pool, error) { 
-    connectionString := "postgresql://admin:p0stgr3s@db:5432/md_db"
+     
+    var connectionString = os.Getenv("POSTGRES_CONNECTION_STRING")
+
+    if connectionString == "" {
+        return nil, errors.New("The env variable POSTGRES_CONNECTION_STRING is not defined")
+    }
 
     conn, err := pgxpool.New(ctx, connectionString)
 

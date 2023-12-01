@@ -2,8 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"os"
 
 	"github.com/LucasAndFlores/md_api/internal/config"
 	"github.com/LucasAndFlores/md_api/routes"
@@ -11,7 +9,13 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+
 func main() {
+    e := config.LoadEnvVariables()
+
+    if e != nil {
+        panic(e)
+    }
 
     ctx := context.Background()
     postgres, err := storage.NewPostgresConnection(ctx)
@@ -21,14 +25,6 @@ func main() {
     }
 
     defer postgres.Close()
-
-    e := config.LoadEnvVariables()
-
-    if e != nil {
-        panic(err)
-    }
-
-    fmt.Println(os.Getenv("PORT"))
 
     app := fiber.New()
 
